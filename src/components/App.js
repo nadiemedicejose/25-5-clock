@@ -1,9 +1,9 @@
-import './styles/App.scss';
+import '../styles/App.scss';
 
 function App() {
   return (
     <div className="App">
-      <h1>Calculator</h1>
+      <h1>25 + 5 Clock</h1>
     </div>
   );
 }
