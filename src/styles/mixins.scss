@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora&display=swap');
+
+@mixin reset {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@mixin font-face (
+  $weight: normal,
+  $size: medium,
+  $ln-height: normal,
+  $transform: none,
+  $align: left,
+  $color: black
+  ) {
+    font-family: 'Sora', 'Helvetica', Arial, sans-serif;
+    font-weight: $weight;
+    font-size: $size;
+    line-height: $ln-height;
+    text-transform: $transform;
+    text-align: $align;
+    color: $color;
+}

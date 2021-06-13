@@ -1,11 +1,9 @@
 import '../styles/App.scss';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <h1>25 + 5 Clock</h1>
     </div>
   );
 }
-
-export default App;
