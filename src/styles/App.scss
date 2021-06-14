@@ -4,9 +4,3 @@
 * {
   @include m.reset;
 }
-
-.App {
-  @include m.font-face(
-    $align: center,
-    $color: hsl(357, 90%, 55%));
-}
