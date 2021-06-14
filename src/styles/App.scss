@@ -1,6 +1,67 @@
 
 @use 'mixins' as m;
+@use 'flex' as f;
 
 * {
   @include m.reset;
+}
+
+body {
+  background-color: hsl(0, 0%, 7%);
+  @include m.font-face(
+    $color: hsl(0, 0%, 82%),
+    $align: center
+  );
+}
+
+h1 {
+  margin: 3rem 0 1rem;
+  color: white;
+}
+
+#length-controls {
+  // controls container
+  max-width: 100%;
+  min-height: 200px;
+
+  @include f.flex-container(
+    $wrap: wrap,
+    $justify-content: center,
+    $align-content: center
+  );
+}
+
+.length-control {
+  // item for controls container
+  width: 250px;
+  max-width: 1fr;
+  border-radius: .5rem;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: hsl(236, 74%, 70%);
+  @include m.font-face(
+    $color: hsl(236, 53%, 55%),
+    $align: center
+  );
+  user-select: none;
+
+  #break-label, #session-label {
+    @include m.font-face(
+      $transform: capitalize,
+      $size: 1.5rem,
+      $align: inherit,
+      $color: hsl(0, 0%, 90%)
+    );
+  }
+
+  .controls-container {
+    @include f.flex-container(
+      $justify-content: space-between
+    );
+
+    span {
+      padding: 1rem;
+      font-weight: 600;
+    }
+  }
 }
