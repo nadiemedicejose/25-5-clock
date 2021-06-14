@@ -7,10 +7,8 @@ export default function App() {
   return (
     <div className="App">
       <h1>25 + 5 Clock</h1>
-      <div id='length-controls'>
-        <LengthControl name='break' value={5} />
-        <LengthControl name='session' value={25} />
-      </div>
+      <LengthControl name='session' value={25} />
+      <LengthControl name='break' value={5} />
       <Timer />
       <TimerControl />
     </div>

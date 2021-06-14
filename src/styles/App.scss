@@ -1,12 +1,12 @@
 
 @use 'mixins' as m;
-@use 'flex' as f;
 
 * {
   @include m.reset;
 }
 
 body {
+  width: 100%;
   background-color: hsl(0, 0%, 7%);
   @include m.font-face(
     $color: hsl(0, 0%, 82%),
@@ -14,54 +14,110 @@ body {
   );
 }
 
+.App {
+  padding: 1rem;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "header header"
+    "session breakl"
+    "timer timer"
+    "controls controls";
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 1rem;
+}
+
 h1 {
-  margin: 3rem 0 1rem;
+  margin: 2rem 0 1rem;
+  grid-area: header;
+  font-size: 3rem;
   color: white;
 }
 
-#length-controls {
-  // controls container
-  max-width: 100%;
-  min-height: 200px;
-
-  @include f.flex-container(
-    $wrap: wrap,
-    $justify-content: center,
-    $align-content: center
-  );
-}
-
 .length-control {
-  // item for controls container
-  width: 250px;
-  max-width: 1fr;
-  border-radius: .5rem;
-  margin: 1rem;
+  width: .5fr;
   padding: 1rem;
+  border-radius: .5rem;
   background-color: hsl(236, 74%, 70%);
   @include m.font-face(
     $color: hsl(236, 53%, 55%),
     $align: center
   );
   user-select: none;
-
+  
   #break-label, #session-label {
     @include m.font-face(
       $transform: capitalize,
-      $size: 1.5rem,
+      $size: 1.2rem,
       $align: inherit,
       $color: hsl(0, 0%, 90%)
     );
   }
-
+  
   .controls-container {
-    @include f.flex-container(
-      $justify-content: space-between
-    );
-
+    display: flex;
+    justify-content: space-between;
+  
     span {
       padding: 1rem;
       font-weight: 600;
+    }
+  }
+
+  #session-length {
+    grid-area: session;
+  }
+  
+  #break-length {
+    grid-area: breakl;
+  }
+}
+
+.timer {
+  min-height: 200px;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: hsl(236, 53%, 55%);
+  grid-area: timer;
+  grid-column: 1 / span 2;
+
+  .timer-wrapper {
+    max-width: 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+    #timer-label {
+      @include m.font-face(
+        $size: 2rem,
+        $align: inherit,
+        $color: hsl(0, 0%, 90%)
+      );
+    }
+
+    #time-left {
+      color: hsl(236, 74%, 70%);
+      font-size: 6rem;
+    }
+  }
+}
+
+.timer-control {
+  grid-area: controls;
+  grid-column: 1 / span 2;
+
+
+  span {
+    margin: 1rem;
+    font-size: 2rem;
+    color: hsl(236, 74%, 70%);
+
+    &:hover {
+      color: hsl(236, 53%, 55%);
     }
   }
 }
