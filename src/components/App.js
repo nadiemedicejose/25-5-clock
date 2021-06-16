@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import LengthControl from './LengthControl';
 import Timer from './Timer';
 import TimerControl from './TimerControl';
+import Footer from './Footer';
 import '../styles/App.scss';
 import { accurateInterval } from '../libraries/accurateInterval';
 
@@ -194,6 +195,7 @@ export default class App extends Component {
           timerControl = {this.timerControl}
           reset = {this.reset}
         />
+        <Footer />
 
         <audio
           id = 'beep'

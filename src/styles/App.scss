@@ -121,3 +121,15 @@ h1 {
     }
   }
 }
+
+footer {
+  grid-column: 1 / span 2;
+
+  a {
+    color:hsl(236, 74%, 70%);
+
+    &:hover {
+      color:hsl(236, 53%, 55%);
+    }
+  }
+}
