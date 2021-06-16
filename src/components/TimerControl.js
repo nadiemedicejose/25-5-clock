@@ -6,11 +6,11 @@ const start = <FontAwesomeIcon icon={faPlay} />
 const pause = <FontAwesomeIcon icon={faPause} />
 const reset = <FontAwesomeIcon icon={faSyncAlt} />
 
-export default function TimerControl() {
+export default function TimerControl(props) {
   return (
     <div className='timer-control'>
-      <span id='start_stop'>{start}{pause}</span>
-      <span id='reset'>{reset}</span>
+      <span id='start_stop' onClick={props.timerControl}>{start}{pause}</span>
+      <span id='reset' onClick={props.reset}>{reset}</span>
     </div>
   )
 }
