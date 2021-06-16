@@ -51,7 +51,7 @@ h1 {
   #break-label, #session-label {
     @include m.font-face(
       $transform: capitalize,
-      $size: 1.2rem,
+      $size: 1.1rem,
       $align: inherit,
       $color: hsl(0, 0%, 90%)
     );
@@ -131,5 +131,12 @@ footer {
     &:hover {
       color:hsl(236, 53%, 55%);
     }
+  }
+}
+
+@media screen and (orientation: landscape) {
+  .App {
+    max-width: 600px;
+    margin: 0 auto;
   }
 }
