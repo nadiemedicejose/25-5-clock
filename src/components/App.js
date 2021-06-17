@@ -29,7 +29,6 @@ export default class App extends Component {
     this.warning = this.warning.bind(this);
     this.buzzer = this.buzzer.bind(this);
     this.switchTimer = this.switchTimer.bind(this);
-    this.clockify = this.clockify.bind(this);
     this.reset = this.reset.bind(this);
   }
 
@@ -139,14 +138,6 @@ export default class App extends Component {
     });
   }
 
-  clockify() {
-    let minutes = Math.floor(this.state.timer / 60);
-    let seconds = this.state.timer - minutes * 60;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    return minutes + ':' + seconds;
-  }
-
   reset() {
     this.setState({
       brkLength: 5,
@@ -189,7 +180,7 @@ export default class App extends Component {
         <Timer
           style = {this.state.alarmColor}
           timerType = {this.state.timerType}
-          clockify = {this.clockify()}
+          timer = {this.state.timer}
         />
         <TimerControl
           timerControl = {this.timerControl}
