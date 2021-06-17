@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import LengthControl from './LengthControl';
+import LengthControls from './LengthControls';
 import Timer from './Timer';
 import TimerControl from './TimerControl';
 import Footer from './Footer';
@@ -19,9 +19,9 @@ export default class App extends Component {
       alarmColor: { color: 'white' }
     };
 
+    this.setTimer = this.setTimer.bind(this);
     this.setBrkLength = this.setBrkLength.bind(this);
     this.setSeshLength = this.setSeshLength.bind(this);
-    this.lengthControl = this.lengthControl.bind(this);
     this.timerControl = this.timerControl.bind(this);
     this.beginCountDown = this.beginCountDown.bind(this);
     this.decrementTimer = this.decrementTimer.bind(this);
@@ -32,45 +32,22 @@ export default class App extends Component {
     this.reset = this.reset.bind(this);
   }
 
-  setBrkLength(e) {
-    this.lengthControl(
-      'brkLength',
-      e.currentTarget.dataset.operation,
-      this.state.brkLength,
-      'Session'
-    );
+  setTimer(value) {
+    this.setState({
+      timer: value
+    })
   }
 
-  setSeshLength(e) {
-    this.lengthControl(
-      'seshLength',
-      e.currentTarget.dataset.operation,
-      this.state.seshLength,
-      'Break'
-    );
+  setBrkLength(value) {
+    this.setState({
+      brkLength: value
+    })
   }
 
-  lengthControl(stateToChange, sign, currentLength, timerType) {
-    if (this.state.timerState === 'running') {
-      return;
-    }
-    if (this.state.timerType === timerType) {
-      if (sign === '-' && currentLength !== 1) {
-        this.setState({ [stateToChange]: currentLength - 1 });
-      } else if (sign === '+' && currentLength !== 60) {
-        this.setState({ [stateToChange]: currentLength + 1 });
-      }
-    } else if (sign === '-' && currentLength !== 1) {
-      this.setState({
-        [stateToChange]: currentLength - 1,
-        timer: currentLength * 60 - 60
-      });
-    } else if (sign === '+' && currentLength !== 60) {
-      this.setState({
-        [stateToChange]: currentLength + 1,
-        timer: currentLength * 60 + 60
-      });
-    }
+  setSeshLength(value) {
+    this.setState({
+      seshLength: value
+    })
   }
 
   timerControl() {
@@ -159,23 +136,14 @@ export default class App extends Component {
     return (
       <div className="App">
         <h1>25 + 5 Clock</h1>
-        <LengthControl
-          addID = 'session-increment'
-          length = {this.state.seshLength}
-          lengthID = 'session-length'
-          minID = 'session-decrement'
-          onClick={this.setSeshLength}
-          title = 'Session Length'
-          titleID = 'session-label'
-        />
-        <LengthControl
-          addID = 'break-increment'
-          length = {this.state.brkLength}
-          lengthID = 'break-length'
-          minID = 'break-decrement'
-          onClick={this.setBrkLength}
-          title = 'Break Length'
-          titleID = 'break-label'
+        <LengthControls
+          brkLength = {this.state.brkLength}
+          seshLength = {this.state.seshLength}
+          timerState = {this.state.timerState}
+          timerType = {this.state.timerType}
+          setTimer = {this.setTimer}
+          setBrkLength = {this.setBrkLength}
+          setSeshLength = {this.setSeshLength}
         />
         <Timer
           style = {this.state.alarmColor}
