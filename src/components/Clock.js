@@ -128,10 +128,7 @@ export default class Clock extends Component {
     return (
       <div>
         <LengthControls
-          brkLength = {this.state.brkLength}
-          seshLength = {this.state.seshLength}
-          timerState = {this.state.timerState}
-          timerType = {this.state.timerType}
+          state = {this.state}
           setTimer = {this.setTimer}
           setBrkLength = {this.setBrkLength}
           setSeshLength = {this.setSeshLength}

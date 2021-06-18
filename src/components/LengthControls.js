@@ -2,23 +2,20 @@ import React from 'react'
 import LengthControl from './LengthControl';
 
 export default function LengthControls({
-  brkLength,
+  state,
   setBrkLength,
-  seshLength,
   setSeshLength,
-  timerState,
-  timerType,
   setTimer
 }) {
   const updateBrkLength = (e) => {
-    let currentLength = brkLength;
+    let currentLength = state.brkLength;
     let newTimerType = 'Session';
     let sign = e.currentTarget.dataset.operation;
 
-    if (timerState === 'running') {
+    if (state.timerState === 'running') {
       return;
     }
-    if (timerType === newTimerType) {
+    if (state.timerType === newTimerType) {
       if (sign === '-' && currentLength !== 1) {
         setBrkLength(currentLength - 1);
       } else if (sign === '+' && currentLength !== 60) {
@@ -34,14 +31,14 @@ export default function LengthControls({
   }
 
   const updateSeshLength = (e) => {
-    let currLength = seshLength;
+    let currLength = state.seshLength;
     let newTimerType = 'Break';
     let sign = e.currentTarget.dataset.operation;
 
-    if (timerState === 'running') {
+    if (state.timerState === 'running') {
       return;
     }
-    if (timerType === newTimerType) {
+    if (state.timerType === newTimerType) {
       if (sign === '-' && currLength !== 1) {
         setSeshLength(currLength - 1);
       } else if (sign === '+' && currLength !== 60) {
@@ -60,7 +57,7 @@ export default function LengthControls({
     <div>
       <LengthControl
         addID = 'session-increment'
-        length = {seshLength}
+        length = {state.seshLength}
         lengthID = 'session-length'
         minID = 'session-decrement'
         onClick={updateSeshLength}
@@ -69,7 +66,7 @@ export default function LengthControls({
       />
       <LengthControl
         addID = 'break-increment'
-        length = {brkLength}
+        length = {state.brkLength}
         lengthID = 'break-length'
         minID = 'break-decrement'
         onClick={updateBrkLength}
