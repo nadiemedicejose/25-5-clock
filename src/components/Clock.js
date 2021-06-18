@@ -135,9 +135,7 @@ export default class Clock extends Component {
         />
 
         <Timer
-          style = {this.state.alarmColor}
-          timerType = {this.state.timerType}
-          timer = {this.state.timer}
+          state = {this.state}
         />
 
         <TimerControl
