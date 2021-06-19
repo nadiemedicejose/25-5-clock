@@ -54,7 +54,7 @@ export default function LengthControls({
   }
 
   return (
-    <div>
+    <div id='length-controls'>
       <LengthControl
         control = {'session'}
         title = {'Session Length'}

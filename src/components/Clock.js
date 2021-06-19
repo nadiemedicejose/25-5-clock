@@ -125,8 +125,15 @@ export default class Clock extends Component {
   }
 
   render() {
+    const beepSound = <audio
+      id='beep'
+      preload='auto'
+      ref={(audio) => {
+        this.audioBeep = audio;
+      } }
+      src='https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav' />;
     return (
-      <div>
+      <div id='clock'>
         <LengthControls
           state = {this.state}
           setTimer = {this.setTimer}
@@ -143,14 +150,7 @@ export default class Clock extends Component {
           reset = {this.reset}
         />
 
-        <audio
-          id = 'beep'
-          preload = 'auto'
-          ref = {(audio) => {
-            this.audioBeep = audio;
-          }}
-          src = 'https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav'
-        />
+        {beepSound}
       </div>
     )
   }

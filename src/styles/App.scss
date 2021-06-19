@@ -6,7 +6,6 @@
 }
 
 body {
-  width: 100%;
   background-color: hsl(0, 0%, 7%);
   @include m.font-face(
     $color: hsl(0, 0%, 82%),
@@ -15,121 +14,118 @@ body {
 }
 
 .App {
+  margin: 0 auto;
+  height: 100vh;
   padding: 1rem;
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-areas:
-    "header header"
-    "session breakl"
-    "timer timer"
-    "controls controls";
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
-  gap: 1rem;
-}
-
-h1 {
-  margin: 2rem 0 1rem;
-  grid-area: header;
-  font-size: 3rem;
-  color: white;
-}
-
-.length-control {
-  width: .5fr;
-  padding: 1rem;
-  border-radius: .5rem;
-  background-color: hsl(236, 74%, 70%);
-  @include m.font-face(
-    $color: hsl(236, 53%, 55%),
-    $align: center
-  );
-  user-select: none;
   
-  #break-label, #session-label {
-    @include m.font-face(
-      $transform: capitalize,
-      $size: 1.1rem,
-      $align: inherit,
-      $color: hsl(0, 0%, 90%)
-    );
+  h1 {
+    margin: 2rem 0 1rem;
+    grid-area: header;
+    font-size: 3rem;
+    color: white;
   }
+
+  footer {
+    margin-top: 1rem;
+    line-height: 1.5rem;
   
-  .controls-container {
-    display: flex;
-    justify-content: space-between;
+    a {
+      color:hsl(236, 74%, 70%);
   
-    span {
+      &:hover {
+        color:hsl(236, 53%, 55%);
+      }
+    }
+  }
+}
+
+
+#clock {
+  display: flex;
+  flex-direction: column;
+
+  #length-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: stretch;
+    justify-items: stretch;
+    align-items: stretch;
+    gap: 1rem;
+  
+    .length-control {
       padding: 1rem;
-      font-weight: 600;
-    }
-  }
-
-  #session-length {
-    grid-area: session;
-  }
-  
-  #break-length {
-    grid-area: breakl;
-  }
-}
-
-.timer {
-  min-height: 200px;
-  padding: 1rem;
-  border-radius: 1rem;
-  background-color: hsl(236, 53%, 55%);
-  grid-area: timer;
-  grid-column: 1 / span 2;
-
-  .timer-wrapper {
-    max-width: 1fr;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-
-    #timer-label {
+      border-radius: .5rem;
+      background-color: hsl(236, 74%, 70%);
       @include m.font-face(
-        $size: 2rem,
-        $align: inherit,
-        $color: hsl(0, 0%, 90%)
+        $color: hsl(236, 53%, 55%),
+        $align: center
       );
+      user-select: none;
+      
+      #break-label, #session-label {
+        @include m.font-face(
+          $transform: capitalize,
+          $size: 1.1rem,
+          $align: inherit,
+          $color: hsl(0, 0%, 90%)
+        );
+      }
+      
+      .controls-container {
+        display: flex;
+        justify-content: space-between;
+      
+        span {
+          padding: 1rem;
+          font-weight: 600;
+        }
+      }
     }
+  }
 
-    #time-left {
+  .timer {
+    min-height: 200px;
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: hsl(236, 53%, 55%);
+  
+    .timer-wrapper {
+      max-width: 1fr;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+  
+      #timer-label {
+        @include m.font-face(
+          $size: 2rem,
+          $align: inherit,
+          $color: hsl(0, 0%, 90%)
+        );
+      }
+  
+      #time-left {
+        color: hsl(236, 74%, 70%);
+        font-size: 6rem;
+      }
+    }
+  }
+
+  .timer-control {
+    span {
+      margin: 1rem;
+      font-size: 2rem;
       color: hsl(236, 74%, 70%);
-      font-size: 6rem;
-    }
-  }
-}
-
-.timer-control {
-  grid-area: controls;
-  grid-column: 1 / span 2;
-
-
-  span {
-    margin: 1rem;
-    font-size: 2rem;
-    color: hsl(236, 74%, 70%);
-
-    &:hover {
-      color: hsl(236, 53%, 55%);
-    }
-  }
-}
-
-footer {
-  grid-column: 1 / span 2;
-
-  a {
-    color:hsl(236, 74%, 70%);
-
-    &:hover {
-      color:hsl(236, 53%, 55%);
+  
+      &:hover {
+        color: hsl(236, 53%, 55%);
+      }
     }
   }
 }
@@ -137,6 +133,5 @@ footer {
 @media screen and (orientation: landscape) {
   .App {
     max-width: 600px;
-    margin: 0 auto;
   }
 }
